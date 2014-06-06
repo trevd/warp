@@ -1,33 +1,4 @@
-# Figure out which compiler to use (prefer gdc, fall back to dmd).
-ifeq (,$(DC))
-	DC:=$(shell which gdc 2>/dev/null)
-ifeq (,$(DC))
-	DC:=dmd
-endif
-endif
 
-ifeq (gdc,$(notdir $(DC)))
-	DFLAGS=
-	OFSYNTAX=-o
-else
-ifeq (dmd,$(notdir $(DC)))
-	DFLAGS=-c -O -inline -release
-else
-    $(error Unsupported compiler: $(DC))
-endif
-endif
-
-CC=cc
-CXX=c++
-CFLAGS=
-CXXFLAGS=
-# warp sources
-SRCS=
-
-# Binaries generated
-BIN:=warp $(WARPDRIVE)
-
-# Rules
 
 all : warp warpdrive
 
