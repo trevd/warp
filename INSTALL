@@ -1,0 +1,63 @@
+INSTALL
+=======
+
+Building and using warp
+-----------------------
+
+Tested on an lubuntu 14.04 x86_64 live image using 
+gdc 4.8.2, make 3.81 and git 1.9.1
+
+1.Install prerequisites:
+
+sudo apt-get install git-core gdc make
+
+2. Clone Repository
+git clone https://github.com/trevd/warp.git
+
+3. Build Binaries
+cd warp 
+make -j6
+
+
+Building 32 bit versions on x86_64
+----------------------------------
+
+1. Add i386 architecture support to the package manager
+
+sudo dpkg --add-architecture i386
+
+2. Update apt source list to include the new architecture
+
+sudo apt-get update
+
+3.Install prerequisites
+
+sudo apt-get install git-core gdc gcc-multilib g++-multilib make
+
+4. Download libphobos-dev:i386 package
+
+cd /tmp
+apt-get download libphobos-4.8-dev:i386
+sudo dpkg-deb --verbose --extract libphobos-4.8-dev_4.8.2-19ubuntu1_i386.deb /
+sudo ln -svf /usr/lib/gcc/i686-linux-gnu/4.8/libgphobos2.a /lib32/
+
+[ libphobos-4.8-dev:i386 conflicts with the native amd64 version of the 
+package. This makes it difficult to install via apt-get or similiar 
+package managers. The easiest way around this is to manually download 
+package and extract the deb package. ]
+
+5. Clone Repository
+git clone https://github.com/trevd/warp.git
+
+6. Build Binaries
+cd warp 
+DFLAGS=-m32 make -j6
+
+
+
+
+
+
+
+
+
