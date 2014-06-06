@@ -12,6 +12,9 @@ the predefined macros of a few of today's crop of compilers (gcc
 Currently `warp`'s build has only been tested with gcc 4.7.1 and gcc 4.8.1 on CentOS 6. More
 officially supported platforms to follow.
 
+See INSTALL for details on building with other platforms and architectures 
+
+
 Dependencies
 ------------
 
